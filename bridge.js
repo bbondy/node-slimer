@@ -33,7 +33,7 @@ function setupPushNotifications(id, page) {
 controlpage.onAlert=function(msg){
 	var request=JSON.parse(msg);
 	var cmdId=request[1];
-//	console.log(request);
+	//console.log('Request: ' + request);
 	if(request[0]===0){
 		switch(request[2]){
 		case 'createPage':
@@ -70,7 +70,11 @@ controlpage.onAlert=function(msg){
 			page.open(request[3]);
 			break;
 		case 'pageOpenWithCallback':
+			var timeoutId = window.setTimeout(function() {
+				respond([id, cmdId, 'pageOpened', 'timeout']);
+			}, page.settings.resourceTimeout);
 			page.open(request[3], function(status){
+				clearTimeout(timeoutId);
 				respond([id, cmdId, 'pageOpened', status]);
 			});
 			break;

@@ -79,7 +79,7 @@ module.exports={
 			
 				io.sockets.on('connection',function(socket){
 					socket.on('res',function(response){
-//						console.log(response);
+						//console.log('Response: ', response);
 						var id=response[0];
 						var cmdId=response[1];
 						switch(response[2]){
