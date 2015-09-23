@@ -2,7 +2,7 @@
   "author": "Alex Scheel Meyer (http://www.linkedin.com/in/alexscheelmeyer)",
   "name": "node-slimer",
   "description": "bridge between node.js and PhantomJS | SlimerJS",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "homepage": "https://github.com/bbondy/node-slimer",
   "repository": {
     "type": "git",
