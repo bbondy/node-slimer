@@ -56,7 +56,7 @@ module.exports={
 				};\n\
 			</script></head><body></body></html>');
 		}).listen(function(){			
-			var io=socketio.listen(server,{'log level':1});
+			var io=socketio.listen(server,{'log level':1, 'destroy buffer size': Infinity});
 	
 			var port=server.address().port;
 			spawnPhantom(port,function(err,phantom){
