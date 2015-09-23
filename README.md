@@ -1,7 +1,7 @@
 It seems like [node-phantom](https://github.com/alexscheelmeyer/node-phantom) is no longer maintained. This is a copy of that project with some fixes.
 The end result is published on npm as [node-slimer](https://www.npmjs.com/package/node-slimer).
 
-Node-phantom
+node-slimer
 ---------------
 
 This is a bridge between [PhantomJs](http://phantomjs.org/) and [Node.js](http://nodejs.org/).
@@ -25,7 +25,7 @@ For running the tests you will need [Mocha](http://visionmedia.github.io/mocha/)
 Installing
 ----------
 
-    npm install node-phantom
+    npm install node-slimer
 
 
 Usage
@@ -33,7 +33,7 @@ Usage
 You can use it pretty much like you would use PhantomJS-Node, for example this is an adaptation of a [web scraping example](http://net.tutsplus.com/tutorials/javascript-ajax/web-scraping-with-node-js/) :
 
 ```javascript
-var phantom=require('node-phantom');
+var phantom=require('node-slimer');
 phantom.create(function(err,ph) {
   return ph.createPage(function(err,page) {
     return page.open("http://tilomitra.com/repository/screenscrape/ajax.html", function(err,status) {
@@ -99,13 +99,13 @@ phantom.create(callback,{phantomPath: './slimerjs-0.9.6/slimerjs'})
 
 ### Working with the API
 
-Once you have the phantom instance you can use it much as you would the real PhantomJS, node-phantom tries to mimic the api.
+Once you have the phantom instance you can use it much as you would the real PhantomJS, node-slimer tries to mimic the api.
 
 An exception is that since this is a wrapper that does network communication to control PhantomJS, _all_ methods are asynchronous and
 with a callback even when the PhantomJS version is synchronous.
 
 Another notable exception is the page.evaluate method (and page.evaluateAsync method) that since PhantomJS 1.6 has a provision for extra arguments
-to be passed into the evaluated function. In the node-phantom world these arguments are placed _after_ the callback. So the
+to be passed into the evaluated function. In the node-slimer world these arguments are placed _after_ the callback. So the
 order is evaluatee, callback, optional arguments. In code it looks like :
 
 ```javascript
