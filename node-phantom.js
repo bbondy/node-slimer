@@ -227,6 +227,11 @@ module.exports = {
         var prematureExitHandler = function (code, signal) {
           console.warn('phantom crash: code ' + code)
           server.close()
+
+          // required to signal up the call stack that phantom has crashed
+          // the catching block will signal a error return code allowing
+          // a supervisor process to restart
+          throw("premature phantom crash");
         }
 
         phantom.on('exit', prematureExitHandler)
