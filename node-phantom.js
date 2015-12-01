@@ -18,7 +18,7 @@ module.exports = {
     if (options.phantomPath === undefined) options.phantomPath = 'phantomjs'
     if (options.parameters === undefined) options.parameters = {}
 
-    function spawnPhantom (port, callback) {
+    function spawnPhantom (port, cb) {
       var args = []
       for (var parm in options.parameters) {
         args.push('--' + parm + '=' + options.parameters[parm])
@@ -46,7 +46,7 @@ module.exports = {
 
       // wait a bit to see if the spawning of phantomjs immediately fails due to bad path or similar
       setTimeout(function () {
-        callback(hasErrors, phantom)
+        cb(hasErrors, phantom)
       }, 100)
     }
 
@@ -171,7 +171,7 @@ module.exports = {
                 cmds[cmdId].cb(null, JSON.parse(response[3]))
                 delete cmds[cmdId]
                 break
-            case 'pageClosed': // eslint-disable-line
+              case 'pageClosed': // eslint-disable-line
                 delete pages[id] // fallthru
               case 'pageSetDone':
               case 'pageJsIncluded':
@@ -231,7 +231,7 @@ module.exports = {
           // required to signal up the call stack that phantom has crashed
           // the catching block will signal a error return code allowing
           // a supervisor process to restart
-          throw("premature phantom crash");
+          process.emit("phantomError")
         }
 
         phantom.on('exit', prematureExitHandler)
